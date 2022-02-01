@@ -44,12 +44,14 @@ jobs:
     - run: snyk auth ${{ secrets.SNYK_TOKEN }} # snyk authentication using GH secrets
 
    # - name: Bash for GitHub Actions
-    #  run: sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
+    #  run: sh "bash ./snyk-scan.sh --mode=monitor --html=0 --type=all --org=monorepo-org"
     - uses: actions/checkout@v2
     - shell: bash
       env:
              SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
-      run: >
-          cd / |
-          chmod 777 snyk-scan.sh |
-          ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org
+      run: 
+          cd / 
+    - shell: bash
+      run: chmod 777 snyk-scan.sh |
+    - shell: bash
+      run: ./snyk-scan.sh --mode=monitor --html=0 --type=all --org=monorepo-org
