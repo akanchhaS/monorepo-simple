@@ -12,7 +12,8 @@
 # ]
 # all is a special case that will iterate through each type
 #
-# --version= -> versionString: this can be used to enable tracking multiple
+# --version= -> 
+: this can be used to enable tracking multiple
 #   versions of an app.  This will be appended to all project names
 #   and the project group.
 # --args= -> extraArgs: this is snyk CLI arguments which will be applied on 
@@ -45,6 +46,10 @@ while [ $# -gt 0 ]; do
     --args*)
       if [[ "$1" != *=* ]]; then shift; fi
       extraArgs="${1#*=}"
+      ;;
+    --org*)
+      if [[ "$1" != *=* ]]; then shift; fi
+      orgName="${1#*=}"
       ;;
     --html*)
       if [[ "$1" != *=* ]]; then shift; fi
@@ -123,7 +128,7 @@ snyk_scan(){
         echo "${file_name}"
         snyk test --file="${1}" --json | snyk-to-html -o "${file_name}"
     else
-        snyk $scanMode --file="${1}" --project-name="${projectName}" --remote-repo-url="${projectGroup}" "$extraArgs"
+        snyk $scanMode --file="${1}" --project-name="${projectName}" --org="${orgName}" --remote-repo-url="${projectGroup}" "$extraArgs" 
     fi
     return $?
 }
