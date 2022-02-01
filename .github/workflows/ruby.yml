@@ -55,3 +55,6 @@ jobs:
       run: chmod 777 snyk-scan.sh 
     - shell: bash
       run: ./snyk-scan.sh --mode=monitor --html=0 --type=all --org=monorepo-org
+    - shell: bash
+      run: snyk code test || true
+      
