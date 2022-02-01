@@ -13,7 +13,7 @@
 # all is a special case that will iterate through each type
 #
 # --version= -> 
-: this can be used to enable tracking multiple
+#: this can be used to enable tracking multiple
 #   versions of an app.  This will be appended to all project names
 #   and the project group.
 # --args= -> extraArgs: this is snyk CLI arguments which will be applied on 
