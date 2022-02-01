@@ -17,9 +17,9 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ruby-version: ['2.6', '2.7', '3.0']
+ #   strategy:
+  #    matrix:
+   #     ruby-version: ['2.6', '2.7', '3.0']
 
     steps:
     - uses: actions/checkout@v2
@@ -39,9 +39,14 @@ jobs:
       with:
         node-version: '14'
     - run: npm install snyk -g # install snyk
-    - run: npm install snyk-to-html
+    - run: npm install snyk-to-html -g
     - run: snyk -v
     - run: snyk auth ${{ secrets.SNYK_TOKEN }} # snyk authentication using GH secrets
 
-    - name: Bash for GitHub Actions
-      run: sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
+   # - name: Bash for GitHub Actions
+    #  run: sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
+    - shell: bash
+      env:
+             SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
+      run: >
+          sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
