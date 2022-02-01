@@ -52,4 +52,4 @@ jobs:
       run: >
           cd / |
           chmod +x snyk-scan.sh |
-          "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
+          ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org
