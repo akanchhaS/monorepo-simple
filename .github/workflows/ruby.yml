@@ -51,4 +51,4 @@ jobs:
              SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
       run: >
           chmod +x snyk-scan.sh
-          sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
+          "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
