@@ -45,8 +45,10 @@ jobs:
 
    # - name: Bash for GitHub Actions
     #  run: sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
+    - uses: actions/checkout@v2
     - shell: bash
       env:
              SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
       run: >
+          chmod +x snyk-scan.sh
           sh "bash ./snyk-scan.sh --mode=monitor --html=1 --type=all --org=monorepo-org"
